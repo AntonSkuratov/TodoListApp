@@ -26,7 +26,7 @@ namespace TodoListApp.Storage
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseNpgsql("Host=databasetodolist;Port=5432;Database=TodoListDb;Username=postgres;Password=1234");
+			optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TodoListDb;Username=postgres;Password=1234");
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -13,7 +13,7 @@ using TodoListApp.Core.Records.Response;
 namespace TodoListApp.Storage.Repositories
 {
 	public class UserRepository : IUserRepository
-	{		
+	{
 		public void AddRole(int userId, int roleId)
 		{
 			using (var context = new TodoListContext())
@@ -22,7 +22,7 @@ namespace TodoListApp.Storage.Repositories
 				var role = context.Roles.First(x => x.Id == roleId);
 				user.Roles.Add(role);
 				context.SaveChanges();
-			}		
+			}
 		}
 
 		public void ChangeBlockingStatus(int id)
@@ -32,7 +32,7 @@ namespace TodoListApp.Storage.Repositories
 				var user = context.Users.First(x => x.Id == id);
 				user.IsBlocked = !user.IsBlocked;
 				context.SaveChanges();
-			}			
+			}
 		}
 
 		public void CreateUser(CreateUserRequest userRequest)
@@ -66,7 +66,7 @@ namespace TodoListApp.Storage.Repositories
 				context.LocalLogins.Add(localLogin);
 
 				context.SaveChanges();
-			}			
+			}
 		}
 
 		public void DeleteRole(int userId, int roleId)
@@ -79,7 +79,7 @@ namespace TodoListApp.Storage.Repositories
 				var role = context.Roles.First(x => x.Id == roleId);
 				user.Roles.Remove(role);
 				context.SaveChanges();
-			}		
+			}
 		}
 
 		public void DeleteUser(int id)
@@ -115,7 +115,7 @@ namespace TodoListApp.Storage.Repositories
 					allUsers.Add(userResponse);
 				}
 				return allUsers.ToList();
-			}			
+			}
 		}
 
 		public GetUserInfoResponse GetUser(int id)
@@ -150,11 +150,14 @@ namespace TodoListApp.Storage.Repositories
 		{
 			using (var context = new TodoListContext())
 			{
-				var salt = context.Users
+				var userLogin = context.Users
 				.AsNoTracking()
 				.Include(u => u.LocalLogin)
-				.First(u => u.LocalLogin!.Login == login)!.LocalLogin!.Salt;
+				.FirstOrDefault(u => u.LocalLogin!.Login == login);
+				if (userLogin== null)
+					return null!;
 
+				var salt = userLogin.LocalLogin!.Salt;
 				var user = context.Users
 					.AsNoTracking()
 					.Include(u => u.LocalLogin)
@@ -162,7 +165,7 @@ namespace TodoListApp.Storage.Repositories
 					.FirstOrDefault(u => u.LocalLogin!.Login == login
 						&& PasswordHandler.GenerateHash(password, salt!) == u.LocalLogin.PasswordHash);
 				return user!;
-			}		
+			}
 		}
 
 		public User GetUserByRefreshToken(string refreshToken)
@@ -172,7 +175,7 @@ namespace TodoListApp.Storage.Repositories
 				return context.Users
 				.AsNoTracking()
 				.FirstOrDefault(u => u.RefreshToken == refreshToken)!;
-			}			
+			}
 		}
 
 		public List<GetAllUsersResponse> SearchUsers(string searchString)
@@ -213,7 +216,7 @@ namespace TodoListApp.Storage.Repositories
 				user.Lastname = lastname;
 				user.Firstname = firstname;
 				context.SaveChanges();
-			}			
+			}
 		}
 
 		public User GetUserByLogin(string login)
