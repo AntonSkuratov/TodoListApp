@@ -43,7 +43,7 @@ namespace TodoListApp.Api.Infrastructure
 				issuer: ISSUER,
 				audience: AUDIENCE,
 				claims: claims,
-				expires: DateTime.Now.AddSeconds(5),
+				expires: DateTime.Now.AddSeconds(20),
 				signingCredentials: new SigningCredentials(
 					GetSecurityKey(), SecurityAlgorithms.HmacSha256));
 			var accessToken = new JwtSecurityTokenHandler().WriteToken(token);

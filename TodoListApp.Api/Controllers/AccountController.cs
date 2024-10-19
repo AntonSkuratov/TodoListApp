@@ -52,7 +52,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok(TokenProvider.GetTokens(user));
 		}
 
-		[Authorize(Policy = "GetPermission")]
+		[AllowAnonymous]
 		[HttpGet]
 		[Route("/Account/GetNewTokens")]
 		public IActionResult GetNewTokens(string refreshToken)
