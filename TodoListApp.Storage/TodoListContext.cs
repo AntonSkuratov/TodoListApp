@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,18 +39,9 @@ namespace TodoListApp.Storage
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
-			modelBuilder.Entity<Role>().HasData(
-				new Role { Id = 1, Name = "Admin", Description = "Администратор" },
-				new Role { Id = 2, Name = "Watcher", Description = "Наблюдатель" },
-				new Role { Id = 3, Name = "User", Description = "Пользователь" });
+			modelBuilder.Entity<Role>().HasData(DataInitializer.GetRoles());
 
-			modelBuilder.Entity<Permission>().HasData(
-				new Permission { Id = 1, Name = "ModifyAccount", Description = "Редактирование профиля" },
-				new Permission { Id = 2, Name = "CreateNewAccountNote", Description = "Создание заметок для текущего профиля" },
-				new Permission { Id = 3, Name = "Get", Description = "Get" },
-				new Permission { Id = 4, Name = "Post", Description = "Post" },
-				new Permission { Id = 5, Name = "Put", Description = "Put" },
-				new Permission { Id = 6, Name = "Delete", Description = "Delete" });
+			modelBuilder.Entity<Permission>().HasData(DataInitializer.GetPermissions());
 		}
 	}
 }
