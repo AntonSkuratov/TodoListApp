@@ -16,7 +16,6 @@ namespace TodoListApp.Storage
 		public DbSet<User> Users { get; set; } = null!;
 		public DbSet<Role> Roles { get; set; } = null!;
 		public DbSet<Permission> Permissions { get; set; } = null!;
-		public DbSet<Note> Notes { get; set; } = null!;
 		public DbSet<DomainLogin> DomainLogins { get; set; } = null!;
 		public DbSet<LocalLogin> LocalLogins { get; set; } = null!;
 
@@ -34,7 +33,6 @@ namespace TodoListApp.Storage
 		{
 			modelBuilder.ApplyConfiguration(new DomainLoginConfiguration());
 			modelBuilder.ApplyConfiguration(new LocalLoginConfiguration());
-			modelBuilder.ApplyConfiguration(new NoteConfiguration());
 			modelBuilder.ApplyConfiguration(new PermissionConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new RoleConfiguration());

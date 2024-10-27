@@ -66,14 +66,5 @@ namespace TodoListApp.Api.Controllers
 			new UserRepository().DeleteRole(userId, roleId);
 			return Ok();
 		}
-
-		[Authorize(Policy = "GetPermission")]
-		[HttpGet]
-		[Route("/Admin/GetAllNotes")]
-		public IActionResult GetAllNotes()
-		{
-			var notes = new NoteRepository().GetAllNotes();
-			return Ok(notes);
-		}
 	}
 }

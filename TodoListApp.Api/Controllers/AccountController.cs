@@ -63,28 +63,5 @@ namespace TodoListApp.Api.Controllers
 
 			return Ok(TokenProvider.GetTokens(user));
 		}
-
-		[Authorize(Policy = "GetPermission")]
-		[HttpGet]
-		[Route("/Account/GetUserNotes")]
-		public IActionResult GetUserNotes()
-		{
-			var notes = new NoteRepository()
-				.GetAllNotes(Convert.ToInt32(User.FindFirst("Id")!.Value));
-
-			return Ok(notes);
-		}
-
-		[Authorize(Policy = "PostPermission")]
-		[HttpPost]
-		[Route("/Account/NewNote")]
-		public IActionResult NewNote(string title, string description)
-		{
-			var note = new CreateNoteRequest(title, description,
-				Convert.ToInt32(User.FindFirst("Id")!.Value));
-
-			new NoteRepository().CreateNote(note);
-			return Ok();
-		}
 	}
 }

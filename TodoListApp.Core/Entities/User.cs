@@ -16,7 +16,6 @@ namespace TodoListApp.Core.Entities
 		public bool IsBlocked { get; set; }
 		public DomainLogin? DomainLogin { get; set; }
 		public LocalLogin? LocalLogin { get; set; }
-		public List<Note> Notes { get; set; } = new();
 		public List<Role> Roles { get; set; } = new();
 	}
 }

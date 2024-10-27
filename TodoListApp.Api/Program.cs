@@ -40,6 +40,7 @@ builder.Services.AddAuthorization(options =>
 	});
 });
 
+//Подключение сервиса аутентификации
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 	.AddJwtBearer(options =>
 	{
@@ -55,14 +56,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 		};
 	});
 
+//Подключение сервиса регистрации контроллеров
 builder.Services.AddControllers()
+	//Для решения проблемы возвращения null значения при подключении
+	//зависимых сущностей и отображения в Swagger
 	.AddJsonOptions(
 		options =>
 		options.JsonSerializerOptions
 		.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+//Подключение сервиса корсов для отправки http запросов на сервер 
 builder.Services.AddCors();
 
-
+//Подключение сервиса SwaggerGen
 builder.Services.AddSwaggerGen(options =>
 {
 	options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -82,8 +88,8 @@ builder.Services.AddSwaggerGen(options =>
 			{
 				Reference=new OpenApiReference
 				{
-					Type=ReferenceType.SecurityScheme,
-					Id="Bearer"
+					Type = ReferenceType.SecurityScheme,
+					Id = "Bearer"
 				}
 			},
 			new string[]{}
