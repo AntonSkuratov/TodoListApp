@@ -35,7 +35,7 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
-		public void CreateUser(CreateUserRequest userRequest)
+		public void Create(CreateUserRequest userRequest)
 		{
 			using (var context = new TodoListContext())
 			{
@@ -82,7 +82,7 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
-		public void DeleteUser(int id)
+		public void Delete(int id)
 		{
 			using (var context = new TodoListContext())
 			{
@@ -92,7 +92,7 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
-		public List<GetAllUsersResponse> GetAllUsers()
+		public List<GetAllUsersResponse> GetAll()
 		{
 			using (var context = new TodoListContext())
 			{
@@ -178,7 +178,7 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
-		public List<GetAllUsersResponse> SearchUsers(string searchString)
+		public List<GetAllUsersResponse> Search(string searchString)
 		{
 			using (var context = new TodoListContext())
 			{
@@ -207,7 +207,7 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
-		public void UpdateUser(int id, string username, string lastname, string firstname)
+		public void Update(int id, string username, string lastname, string firstname)
 		{
 			using (var context = new TodoListContext())
 			{

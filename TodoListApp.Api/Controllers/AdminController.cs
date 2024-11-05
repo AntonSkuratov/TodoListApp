@@ -12,7 +12,7 @@ namespace TodoListApp.Api.Controllers
 		[Route("/Admin/GetAllUser")]
 		public IActionResult GetAllUser()
 		{
-			return Ok(new UserRepository().GetAllUsers());
+			return Ok(new UserRepository().GetAll());
 		}
 
 		[Authorize(Policy = "DeletePermission")]
@@ -20,7 +20,7 @@ namespace TodoListApp.Api.Controllers
 		[Route("/Admin/DeleteUserById")]
 		public IActionResult DeleteUserById(int userId)
 		{
-			new UserRepository().DeleteUser(userId);
+			new UserRepository().Delete(userId);
 			return Ok();
 		}
 
@@ -38,7 +38,7 @@ namespace TodoListApp.Api.Controllers
 		[Route("/Admin/SearchUsers")]
 		public IActionResult SearchUsers(string searchString)
 		{
-			return Ok(new UserRepository().SearchUsers(searchString));
+			return Ok(new UserRepository().Search(searchString));
 		}
 
 		[Authorize(Policy = "GetPermission")]

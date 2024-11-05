@@ -12,7 +12,7 @@ using TodoListApp.Core.Records.Response;
 namespace TodoListApp.Storage.Repositories
 {
 	public class RoleRepository : IRoleRepository
-	{		
+	{
 		public static string DefaultRoleName { get; } = "User";
 
 		public void AddPermission(int permissionId, int roleId)
@@ -23,7 +23,7 @@ namespace TodoListApp.Storage.Repositories
 				var role = context.Roles.First(x => x.Id == roleId);
 				role.Permissions.Add(permission);
 				context.SaveChanges();
-			}	
+			}
 		}
 
 		public void CopyRole(int id)
@@ -40,7 +40,7 @@ namespace TodoListApp.Storage.Repositories
 				};
 				context.Roles.Add(newRole);
 				context.SaveChanges();
-			}			
+			}
 		}
 
 		public void CreateRole(CreateRoleRequest roleRequest)
@@ -65,7 +65,7 @@ namespace TodoListApp.Storage.Repositories
 				var role = context.Roles.Include(r => r.Permissions).First(x => x.Id == roleId);
 				role.Permissions.Remove(permission);
 				context.SaveChanges();
-			}			
+			}
 		}
 
 		public void DeleteRole(int id)
@@ -75,7 +75,7 @@ namespace TodoListApp.Storage.Repositories
 				var role = context.Roles.First(x => x.Id == id);
 				context.Roles.Remove(role);
 				context.SaveChanges();
-			}			
+			}
 		}
 
 		public List<GetAllRolesResponse> GetAllRoles()
@@ -100,16 +100,18 @@ namespace TodoListApp.Storage.Repositories
 					rolesResponse.Add(roleResponse);
 				}
 				return rolesResponse;
-			}		
+			}
 		}
 
-		public List<GetAllRolesResponse> GetRoles(int pageNumber, int pageSize)
+		public List<GetAllRolesResponse> GetRoles(string searchString, int pageNumber, int pageSize)
 		{
 			using (var context = new TodoListContext())
 			{
 				var roles = context.Roles
 				.AsNoTracking()
 				.Include(r => r.Permissions)
+				.Where(r => r.Name!.Contains(searchString) || 
+					r.Description!.Contains(searchString))
 				.Skip((pageNumber - 1) * pageSize)
 				.Take(pageSize)
 				.ToList();

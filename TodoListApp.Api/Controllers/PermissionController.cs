@@ -10,8 +10,8 @@ namespace TodoListApp.Api.Controllers
 	{
 		[HttpPost]
 		[Authorize(Policy = "PostPermission")]
-		[Route("/Permission/CreatePermission")]
-		public IActionResult CreatePermission(string name, string description)
+		[Route("/Permission/Create")]
+		public IActionResult Create(string name, string description)
 		{
 			var permission = new CreatePermissionRequest(name, description);
 			new PermissionRepository().CreatePermission(permission);
@@ -21,8 +21,8 @@ namespace TodoListApp.Api.Controllers
 
 		[HttpDelete]
 		[Authorize(Policy = "DeletePermission")]
-		[Route("/Permission/DeletePermission")]
-		public IActionResult DeletePermission(int id)
+		[Route("/Permission/Delete")]
+		public IActionResult Delete(int id)
 		{
 			new PermissionRepository().DeletePermission(id);
 			return Ok();
@@ -30,24 +30,24 @@ namespace TodoListApp.Api.Controllers
 
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
-		[Route("/Permission/GetAllPermissions")]
-		public IActionResult GetAllPermissions()
+		[Route("/Permission/GetAll")]
+		public IActionResult GetAlls()
 		{
 			return Ok(new PermissionRepository().GetAllPermissions());
 		}
 
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
-		[Route("/Permission/GetPermissions")]
-		public IActionResult GetPermissions(int pageNumber, int pageSize)
+		[Route("/Permission/Search")]
+		public IActionResult GetPermissions(string searchString, int pageNumber, int pageSize)
 		{
-			return Ok(new PermissionRepository().GetPermissions(pageNumber, pageSize));
+			return Ok(new PermissionRepository().GetPermissions(searchString, pageNumber, pageSize));
 		}
 
 		[HttpPut]
 		[Authorize(Policy = "PutPermission")]
-		[Route("/Permission/UpdatePermission")]
-		public IActionResult UpdatePermission(int id, string name, string description)
+		[Route("/Permission/Update")]
+		public IActionResult Update(int id, string name, string description)
 		{
 			new PermissionRepository().UpdatePermission(id, name, description);
 			return Ok();

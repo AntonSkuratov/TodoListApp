@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthorization(options =>
 {
+	//Добавление политик авторизации
 	options.AddPolicy("ModifyAccountPermission", policy =>
 	{
 		policy.RequireClaim("Permission", "ModifyAccount");
@@ -58,8 +59,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 //Подключение сервиса регистрации контроллеров
 builder.Services.AddControllers()
-	//Для решения проблемы возвращения null значения при подключении
-	//зависимых сущностей и отображения в Swagger
+	/*
+	 *Для решения проблемы возвращения null-значения при подключении
+	 *зависимых сущностей в методах Include/ThenInclude и отображения в Swagger
+	 */
 	.AddJsonOptions(
 		options =>
 		options.JsonSerializerOptions
@@ -101,6 +104,7 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+//Подключение middleware UseCors для обработки запросв с любых доменов
 app.UseCors(builder =>
 {
 	builder.AllowAnyOrigin();
@@ -108,10 +112,15 @@ app.UseCors(builder =>
 	builder.AllowAnyHeader();
 });
 
+
+//Подключение middleware для работы аутентификации и авторизации
 app.UseAuthentication();
 app.UseAuthorization();
 
+//Подкдючение middleware для добавления конечных точек для действий контроллеров
 app.MapControllers();
+
+//Если приложение находится в стадии разработки, то используется Swagger
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
@@ -121,4 +130,5 @@ if (app.Environment.IsDevelopment())
 		options.RoutePrefix = string.Empty;
 	});
 }
+
 app.Run();

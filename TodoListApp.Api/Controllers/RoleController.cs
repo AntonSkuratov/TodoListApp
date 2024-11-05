@@ -10,8 +10,8 @@ namespace TodoListApp.Api.Controllers
 	{
 		[HttpPost]
 		[Authorize(Policy = "PostPermission")]
-		[Route("/Role/CreateRole")]
-		public IActionResult CreateRole(string name, string description)
+		[Route("/Role/Create")]
+		public IActionResult Create(string name, string description)
 		{
 			var role = new CreateRoleRequest(name, description);
 			new RoleRepository().CreateRole(role);
@@ -21,33 +21,33 @@ namespace TodoListApp.Api.Controllers
 
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
-		[Route("/Role/GetAllRoles")]
-		public IActionResult GetAllRoles()
+		[Route("/Role/GetAll")]
+		public IActionResult GetAll()
 		{
 			return Ok(new RoleRepository().GetAllRoles());
 		}
 
 		[HttpPut]
 		[Authorize(Policy = "PutPermission")]
-		[Route("/Role/UpdateRole")]
-		public IActionResult UpdateRole(int id, string name, string description)
+		[Route("/Role/Update")]
+		public IActionResult Update(int id, string name, string description)
 		{
 			new RoleRepository().UpdateRole(id, name, description);
 			return Ok();
 		}
 
-		[HttpGet]		
+		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
-		[Route("/Role/GetRoles")]
-		public IActionResult GetRoles(int pageNumber, int pageSize)
+		[Route("/Role/Search")]
+		public IActionResult Search(string searchString, int pageNumber, int pageSize)
 		{
-			return Ok(new RoleRepository().GetRoles(pageNumber, pageSize));
+			return Ok(new RoleRepository().GetRoles(searchString, pageNumber, pageSize));
 		}
 
 		[HttpDelete]
 		[Authorize(Policy = "DeletePermission")]
-		[Route("/Role/GetRoles")]
-		public IActionResult DeleteRole(int id)
+		[Route("/Role/Delete")]
+		public IActionResult Delete(int id)
 		{
 			new RoleRepository().DeleteRole(id);
 			return Ok();
@@ -55,8 +55,8 @@ namespace TodoListApp.Api.Controllers
 
 		[HttpPost]
 		[Authorize(Policy = "PostPermission")]
-		[Route("/Role/CopyRole")]
-		public IActionResult CopyRole(int id)
+		[Route("/Role/Copy")]
+		public IActionResult Copy(int id)
 		{
 			new RoleRepository().CopyRole(id);
 			return Ok();

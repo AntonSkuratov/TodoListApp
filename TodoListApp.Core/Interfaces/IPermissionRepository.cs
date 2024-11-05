@@ -10,12 +10,12 @@ using TodoListApp.Core.Records.Response;
 
 namespace TodoListApp.Core.Interfaces
 {
-    public interface IPermissionRepository
+	public interface IPermissionRepository
 	{
 		void CreatePermission(CreatePermissionRequest permissionRequest);
 		void UpdatePermission(int id, string name, string description);
 		void DeletePermission(int id);
 		List<GetAllPermissionsResponse> GetAllPermissions();
-		List<GetAllPermissionsResponse> GetPermissions(int pageNumber, int pageSize);
+		List<GetAllPermissionsResponse> GetPermissions(string searchString, int pageNumber, int pageSize);
 	}
 }
