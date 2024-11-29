@@ -64,9 +64,9 @@ namespace TodoListApp.Api.Controllers
 		[Authorize(Policy = "GetPermission")]
 		[HttpGet]
 		[Route("/User/Get")]
-		public IActionResult GetUserById(int id)
+		public IActionResult GetUser()
 		{
-			return Ok(new UserRepository().GetUser(id));
+			return Ok(new UserRepository().GetUser(Convert.ToInt32(User.FindFirst("Id")!.Value)));
 		}
 
 		[Authorize(Policy = "PutPermission")]
@@ -89,7 +89,7 @@ namespace TodoListApp.Api.Controllers
 
 		[Authorize(Policy = "PutPermission")]
 		[HttpPut]
-		[Route("/Admin/UpdateBlockStatus")]
+		[Route("/User/UpdateBlockStatus")]
 		public IActionResult UpdateBlockStatus(int userId)
 		{
 			new UserRepository().ChangeBlockingStatus(userId);

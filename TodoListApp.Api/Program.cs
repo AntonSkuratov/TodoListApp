@@ -53,7 +53,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 			ValidAudience = TokenProvider.AUDIENCE,
 			ValidateLifetime = true,
 			IssuerSigningKey = TokenProvider.GetSecurityKey(),
-			ValidateIssuerSigningKey = true
+			ValidateIssuerSigningKey = true,
+			ClockSkew = TimeSpan.Zero
 		};
 	});
 

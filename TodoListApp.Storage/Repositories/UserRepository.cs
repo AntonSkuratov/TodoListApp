@@ -16,7 +16,7 @@ namespace TodoListApp.Storage.Repositories
 	{
 		public void AddRole(int userId, int roleId)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = context.Users.First(x => x.Id == userId);
 				var role = context.Roles.First(x => x.Id == roleId);
@@ -27,7 +27,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void ChangeBlockingStatus(int id)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = context.Users.First(x => x.Id == id);
 				user.IsBlocked = !user.IsBlocked;
@@ -37,7 +37,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void Create(CreateUserRequest userRequest)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = new User
 				{
@@ -71,7 +71,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void DeleteRole(int userId, int roleId)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = context.Users
 				.Include(u => u.Roles)
@@ -84,7 +84,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void Delete(int id)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = context.Users.First(x => x.Id == id);
 				context.Users.Remove(user);
@@ -94,7 +94,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public List<GetAllUsersResponse> GetAll()
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var users = context.Users
 				.AsNoTracking()
@@ -120,7 +120,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public GetUserInfoResponse GetUser(int id)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = context.Users
 				.AsNoTracking()
@@ -148,7 +148,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public User GetUserByLogin(string login, string password)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var userLogin = context.Users
 				.AsNoTracking()
@@ -170,7 +170,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public User GetUserByRefreshToken(string refreshToken)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				return context.Users
 				.AsNoTracking()
@@ -180,7 +180,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public List<GetAllUsersResponse> Search(string searchString)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var users = context.Users
 				.AsNoTracking()
@@ -209,7 +209,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void Update(int id, string username, string lastname, string firstname)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var user = context.Users.First(u => u.Id == id);
 				user.Username = username;
@@ -221,7 +221,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public User GetUserByLogin(string login)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				return context.Users
 				.AsNoTracking()

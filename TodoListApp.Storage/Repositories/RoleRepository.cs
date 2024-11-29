@@ -17,7 +17,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void AddPermission(int permissionId, int roleId)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permission = context.Permissions.First(x => x.Id == permissionId);
 				var role = context.Roles.First(x => x.Id == roleId);
@@ -28,7 +28,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void CopyRole(int id)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var role = context.Roles.First(r => r.Id == id);
 				var newRole = new Role
@@ -45,7 +45,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void CreateRole(CreateRoleRequest roleRequest)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var role = new Role
 				{
@@ -59,7 +59,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void DeletePermission(int permissionId, int roleId)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permission = context.Permissions.First(x => x.Id == permissionId);
 				var role = context.Roles.Include(r => r.Permissions).First(x => x.Id == roleId);
@@ -70,7 +70,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void DeleteRole(int id)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var role = context.Roles.First(x => x.Id == id);
 				context.Roles.Remove(role);
@@ -80,7 +80,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public List<GetAllRolesResponse> GetAllRoles()
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var roles = context.Roles
 				.AsNoTracking()
@@ -105,7 +105,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public List<GetAllRolesResponse> GetRoles(string searchString, int pageNumber, int pageSize)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var roles = context.Roles
 				.AsNoTracking()
@@ -134,7 +134,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void UpdateRole(int id, string name, string description)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var role = context.Roles.First(x => x.Id == id);
 				role.Name = name;
@@ -145,7 +145,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public GetAllRolesResponse GetRoleByName(string name)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var role = context.Roles.First(r => r.Name == name);
 				var roleResponse = new GetAllRolesResponse

@@ -11,7 +11,7 @@ namespace TodoListApp.Api.Infrastructure
 {
 	public static class TokenProvider
 	{
-		public const int LIFE_TIME = 5;
+		public const int LIFE_TIME = 1;
 		public const string ISSUER = "TodoListAppServer";
 		public const string AUDIENCE = "TodoListAppServerClient";
 		const string KEY = "!over123secretkey!123987over456secret!key123987over789secretkey123987!";
@@ -45,7 +45,7 @@ namespace TodoListApp.Api.Infrastructure
 				issuer: ISSUER,
 				audience: AUDIENCE,
 				claims: claims,
-				expires: DateTime.Now.AddMinutes(LIFE_TIME),
+				expires: DateTime.Now.AddMinutes(0.5d),
 				signingCredentials: new SigningCredentials(
 					GetSecurityKey(), SecurityAlgorithms.HmacSha256));
 			var accessToken = new JwtSecurityTokenHandler().WriteToken(token);

@@ -15,7 +15,7 @@ namespace TodoListApp.Storage.Repositories
 	{
 		public void CreatePermission(CreatePermissionRequest permissionRequest)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permission = new Permission
 				{
@@ -29,7 +29,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void DeletePermission(int id)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permission = context.Permissions.First(x => x.Id == id);
 				context.Permissions.Remove(permission);
@@ -39,7 +39,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public List<GetAllPermissionsResponse> GetAllPermissions()
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permissions = context.Permissions
 				.AsNoTracking()
@@ -64,7 +64,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public List<GetAllPermissionsResponse> GetPermissions(string searchString, int pageNumber, int pageSize)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permissions = context.Permissions
 				.AsNoTracking()
@@ -93,7 +93,7 @@ namespace TodoListApp.Storage.Repositories
 
 		public void UpdatePermission(int id, string name, string description)
 		{
-			using (var context = new TodoListContext())
+			using (var context = new DatabaseContext())
 			{
 				var permission = context.Permissions.First(x => x.Id == id);
 				permission.Name = name;

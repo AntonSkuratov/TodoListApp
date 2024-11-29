@@ -11,7 +11,7 @@ using TodoListApp.Storage.Repositories;
 
 namespace TodoListApp.Storage
 {
-	public class TodoListContext : DbContext
+	public class DatabaseContext : DbContext
 	{
 		public DbSet<User> Users { get; set; } = null!;
 		public DbSet<Role> Roles { get; set; } = null!;
@@ -19,14 +19,14 @@ namespace TodoListApp.Storage
 		public DbSet<DomainLogin> DomainLogins { get; set; } = null!;
 		public DbSet<LocalLogin> LocalLogins { get; set; } = null!;
 
-		public TodoListContext()
+		public DatabaseContext()
 		{
 			Database.EnsureCreated();
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=TodoListDb;Username=postgres;Password=1234");
+			optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TodoListDb;Username=postgres;Password=1234");
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
