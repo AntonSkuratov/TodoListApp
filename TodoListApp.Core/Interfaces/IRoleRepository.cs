@@ -16,9 +16,5 @@ namespace TodoListApp.Core.Interfaces
 		void DeleteRole(int id);
 		List<GetAllRolesResponse> GetAllRoles();
 		List<GetAllRolesResponse> GetRoles(string searchString, int pageNumber, int pageSize);
-		void AddPermission(int permissionId, int roleId);
-		void DeletePermission(int permissionId, int roleId);
-		void CopyRole(int id);
-		GetAllRolesResponse GetRoleByName(string name);
 	}
 }

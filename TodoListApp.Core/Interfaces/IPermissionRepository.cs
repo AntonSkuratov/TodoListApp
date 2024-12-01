@@ -16,6 +16,5 @@ namespace TodoListApp.Core.Interfaces
 		void UpdatePermission(int id, string name, string description);
 		void DeletePermission(int id);
 		List<GetAllPermissionsResponse> GetAllPermissions();
-		List<GetAllPermissionsResponse> GetPermissions(string searchString, int pageNumber, int pageSize);
 	}
 }
