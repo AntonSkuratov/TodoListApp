@@ -10,6 +10,7 @@ namespace TodoListApp.Api.Controllers
 	[Authorize]
 	public class UserController : Controller
 	{
+		//Эндпоинт для создания нового пользователя
 		[AllowAnonymous]
 		[HttpPost]
 		[Route("/User/Create")]
@@ -25,6 +26,8 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для обновления текущего пользователя
+		//Id текущего пользователя берётся из токена
 		[Authorize(Policy = "ModifyAccountPermission")]
 		[HttpPut]
 		[Route("/User/Update")]
@@ -36,6 +39,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для получения всех пользователей
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
 		[Route("/User/GetAll")]
@@ -44,6 +48,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new UserRepository().GetAll());
 		}
 
+		//Эндпоинт для удаления пользователя по его id
 		[Authorize(Policy = "DeletePermission")]
 		[HttpDelete]
 		[Route("/User/Delete")]
@@ -53,6 +58,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для получения пользователей по строке поиска
 		[Authorize(Policy = "GetPermission")]
 		[HttpGet]
 		[Route("/User/Search")]
@@ -61,6 +67,8 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new UserRepository().Search(searchString));
 		}
 
+		//Эндпоинт для получения текущего пользователя
+		//Id текущего пользователя берётся из токена
 		[Authorize(Policy = "GetPermission")]
 		[HttpGet]
 		[Route("/User/Get")]
@@ -69,6 +77,9 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new UserRepository().GetUser(Convert.ToInt32(User.FindFirst("Id")!.Value)));
 		}
 
+		//Эндпоинт для добавления пользователя в роль
+		//1-ый параметр принимает id пользователя
+		//2-ой параметр принимает id роли
 		[Authorize(Policy = "PutPermission")]
 		[HttpPut]
 		[Route("/User/AddRole")]
@@ -78,6 +89,9 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для удаления пользователя из роли
+		//1-ый параметр принимает id пользователя
+		//2-ой параметр принимает id роли
 		[Authorize(Policy = "PutPermission")]
 		[HttpPut]
 		[Route("/User/DeleteRole")]
@@ -87,6 +101,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для изменеия статуса блокировки пользователя по его id
 		[Authorize(Policy = "PutPermission")]
 		[HttpPut]
 		[Route("/User/UpdateBlockStatus")]

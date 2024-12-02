@@ -31,14 +31,15 @@ namespace TodoListApp.Storage
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			//Установка конфигураций сущностей
 			modelBuilder.ApplyConfiguration(new DomainLoginConfiguration());
 			modelBuilder.ApplyConfiguration(new LocalLoginConfiguration());
 			modelBuilder.ApplyConfiguration(new PermissionConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
+			//Инициализация начальными данными ролей и разрешений
 			modelBuilder.Entity<Role>().HasData(DataInitializer.GetRoles());
-
 			modelBuilder.Entity<Permission>().HasData(DataInitializer.GetPermissions());
 		}
 	}

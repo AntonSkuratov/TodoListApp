@@ -10,6 +10,7 @@ using TodoListApp.Core.Records.Response;
 
 namespace TodoListApp.Core.Interfaces
 {
+	//Интерфейс для реализации CRUD-методов над разрешениями 
 	public interface IPermissionRepository
 	{
 		void CreatePermission(CreatePermissionRequest permissionRequest);

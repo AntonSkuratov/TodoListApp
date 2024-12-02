@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace TodoListApp.Core.Infrastructure.Security
 {
+
 	public static class TokenHandler
 	{
+		//Метод для генерации refresh-токена
 		public static string GetRefreshToken() => 
 			Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
 	}

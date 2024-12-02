@@ -9,7 +9,8 @@ using TodoListApp.Core.Records.Response;
 
 namespace TodoListApp.Core.Interfaces
 {
-    public interface IUserRepository
+	//Интерфейс для реализации CRUD-методов над пользователями
+	public interface IUserRepository
 	{
 		void Create(CreateUserRequest userRequest);
 		void Update(int id, string username,

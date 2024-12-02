@@ -9,7 +9,8 @@ using TodoListApp.Core.Records.Response;
 
 namespace TodoListApp.Core.Interfaces
 {
-    public interface IRoleRepository
+	//Интерфейс для реализации CRUD-методов над ролями 
+	public interface IRoleRepository
 	{
 		void CreateRole(CreateRoleRequest roleRequest);
 		void UpdateRole(int id, string name, string description);

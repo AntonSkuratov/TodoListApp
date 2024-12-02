@@ -15,6 +15,13 @@ namespace TodoListApp.Storage.Repositories
 	{
 		public static string DefaultRoleName { get; } = "User";
 
+
+		/// <summary>
+		/// Добавляет разрешение в роль.
+		/// На вход принимает id разрешения и id роли.
+		/// </summary>
+		/// <param name="permissionId"></param>
+		/// <param name="roleId"></param>
 		public void AddPermission(int permissionId, int roleId)
 		{
 			using (var context = new DatabaseContext())
@@ -26,6 +33,11 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Копирует роль по её id и на основе этой роли создаёт новую с такими же полями.		
+		/// </summary>
+		/// <param name="id"></param>
 		public void CopyRole(int id)
 		{
 			using (var context = new DatabaseContext())
@@ -43,6 +55,12 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Создаёт новую роль.
+		/// роль создаётся на основех данных CreateRoleRequest.
+		/// </summary>
+		/// <param name="roleRequest"></param>
 		public void CreateRole(CreateRoleRequest roleRequest)
 		{
 			using (var context = new DatabaseContext())
@@ -57,6 +75,13 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Удаляет разрешение из роли.
+		/// На вход принимает id разрешения и id роли.
+		/// </summary>
+		/// <param name="permissionId"></param>
+		/// <param name="roleId"></param>
 		public void DeletePermission(int permissionId, int roleId)
 		{
 			using (var context = new DatabaseContext())
@@ -68,6 +93,11 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Удаляет роль по её id
+		/// </summary>
+		/// <param name="id"></param>
 		public void DeleteRole(int id)
 		{
 			using (var context = new DatabaseContext())
@@ -78,6 +108,11 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Возвращает все роли в виде списка объектов GetAllRolesResponse.
+		/// </summary>
+		/// <returns></returns>
 		public List<GetAllRolesResponse> GetAllRoles()
 		{
 			using (var context = new DatabaseContext())
@@ -103,6 +138,17 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Возвращает роли(с пагинацией) в виде списка объектов GetAllRolesResponse, 
+		/// у которых название или описание содержат подстроку searchString.
+		/// 2-ой параметр принимает номер страницы.
+		/// 3-ий параметр принимает размер страницы.
+		/// </summary>
+		/// <param name="searchString"></param>
+		/// <param name="pageNumber"></param>
+		/// <param name="pageSize"></param>
+		/// <returns></returns>
 		public List<GetAllRolesResponse> GetRoles(string searchString, int pageNumber, int pageSize)
 		{
 			using (var context = new DatabaseContext())
@@ -132,6 +178,15 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Обновляет данные роли по его id.
+		/// 1-ый параметр принимает новое название.
+		/// 2-ой параметр принимает новое описание.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="name"></param>
+		/// <param name="description"></param>
 		public void UpdateRole(int id, string name, string description)
 		{
 			using (var context = new DatabaseContext())
@@ -143,6 +198,12 @@ namespace TodoListApp.Storage.Repositories
 			}
 		}
 
+
+		/// <summary>
+		/// Возвразает роль по его имени в виде GetAllRolesResponse
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public GetAllRolesResponse GetRoleByName(string name)
 		{
 			using (var context = new DatabaseContext())

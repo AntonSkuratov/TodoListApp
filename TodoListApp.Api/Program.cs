@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddAuthorization(options =>
 {
 	//Добавление политик авторизации
@@ -75,6 +76,7 @@ builder.Services.AddCors();
 //Подключение сервиса SwaggerGen
 builder.Services.AddSwaggerGen(options =>
 {
+	//Добавление поля для ввода токена в интерфейсе Swagger
 	options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
 	{
 		In = ParameterLocation.Header,
@@ -118,8 +120,10 @@ app.UseCors(builder =>
 app.UseAuthentication();
 app.UseAuthorization();
 
+
 //Подкдючение middleware для добавления конечных точек для действий контроллеров
 app.MapControllers();
+
 
 //Если приложение находится в стадии разработки, то используется Swagger
 if (app.Environment.IsDevelopment())

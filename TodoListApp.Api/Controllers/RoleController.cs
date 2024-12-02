@@ -8,6 +8,7 @@ namespace TodoListApp.Api.Controllers
 	[Authorize(Roles = "Admin,Watcher")]
 	public class RoleController : Controller
 	{
+		//Эндпоинт для создания новой роли
 		[HttpPost]
 		[Authorize(Policy = "PostPermission")]
 		[Route("/Role/Create")]
@@ -19,6 +20,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для получения всех ролей
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
 		[Route("/Role/GetAll")]
@@ -27,6 +29,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new RoleRepository().GetAllRoles());
 		}
 
+		//Эндпоинт для обновления роли по id
 		[HttpPut]
 		[Authorize(Policy = "PutPermission")]
 		[Route("/Role/Update")]
@@ -36,6 +39,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для получения ролей с помощью пагинации и строки поиска
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
 		[Route("/Role/Search")]
@@ -44,6 +48,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new RoleRepository().GetRoles(searchString, pageNumber, pageSize));
 		}
 
+		//Эндпоинт для удаления роли по id
 		[HttpDelete]
 		[Authorize(Policy = "DeletePermission")]
 		[Route("/Role/Delete")]
@@ -53,6 +58,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для копирования роли по id
 		[HttpPost]
 		[Authorize(Policy = "PostPermission")]
 		[Route("/Role/Copy")]
@@ -62,6 +68,9 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для добавления разрешения в роль
+		//1-ый параметр принимает id разрешения
+		//2-ой параметр принимает id роли
 		[HttpPut]
 		[Authorize(Policy = "PutPermission")]
 		[Route("/Role/AddPermission")]
@@ -71,6 +80,9 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для удаления разрешения из роли
+		//1-ый параметр принимает id разрешения
+		//2-ой параметр принимает id роли
 		[HttpPut]
 		[Authorize(Policy = "PutPermission")]
 		[Route("/Role/DeletePermission")]

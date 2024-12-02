@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TodoListApp.Core.Records.Response
 {
-	public record GetUserInfoResponse(
+	public record GetUserResponse(
 		string Username,
 		string Lastname,
 		string Firstname,

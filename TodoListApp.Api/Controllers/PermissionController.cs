@@ -8,6 +8,7 @@ namespace TodoListApp.Api.Controllers
 	[Authorize(Roles = "Admin,Watcher")]
 	public class PermissionController : Controller
 	{
+		//Эндпоинт для создания нового разрешения
 		[HttpPost]
 		[Authorize(Policy = "PostPermission")]
 		[Route("/Permission/Create")]
@@ -19,6 +20,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для удаления разрешения по id
 		[HttpDelete]
 		[Authorize(Policy = "DeletePermission")]
 		[Route("/Permission/Delete")]
@@ -28,6 +30,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok();
 		}
 
+		//Эндпоинт для получения всех разрешений
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
 		[Route("/Permission/GetAll")]
@@ -36,6 +39,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new PermissionRepository().GetAllPermissions());
 		}
 
+		//Эндпоинт для получения разрешений с помощью пагинации и строки поиска
 		[HttpGet]
 		[Authorize(Policy = "GetPermission")]
 		[Route("/Permission/Search")]
@@ -44,6 +48,7 @@ namespace TodoListApp.Api.Controllers
 			return Ok(new PermissionRepository().GetPermissions(searchString, pageNumber, pageSize));
 		}
 
+		//Эндпоинт для обновления разрешения по id
 		[HttpPut]
 		[Authorize(Policy = "PutPermission")]
 		[Route("/Permission/Update")]

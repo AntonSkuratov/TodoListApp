@@ -10,8 +10,15 @@ namespace TodoListApp.Core.Entities
 	{
 		public int Id { get; set; }
 		public string? Login { get; set; }
+
+
+		//Хэш пароля
 		public string? PasswordHash { get; set; }
+
+
+		//Соль для хэша пароля
 		public string? Salt { get; set; }
+
 		public int UserId { get; set; }
 		public User? User { get; set; }
 	}

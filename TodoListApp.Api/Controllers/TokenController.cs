@@ -7,6 +7,8 @@ namespace TodoListApp.Api.Controllers
 {
 	public class TokenController : Controller
 	{
+		//Эндпоинт для получения пары из access- и refresh- токенов
+		//На вход принимает логин и пароль пользователя
 		[HttpGet]
 		[AllowAnonymous]
 		[Route("/Token/Get")]
@@ -23,6 +25,8 @@ namespace TodoListApp.Api.Controllers
 			return Ok(TokenProvider.GetTokens(user));
 		}
 
+		//Эндпоинт для получения нового access токена
+		//Используется когда истёк срок жизни крайнего токена
 		[AllowAnonymous]
 		[HttpGet]
 		[Route("/Token/GetNew")]
