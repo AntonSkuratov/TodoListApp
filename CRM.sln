@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoListApp.Core", "TodoListApp.Core\TodoListApp.Core.csproj", "{B37103B0-BAD9-4CF1-B81D-47CC4F2ECE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.Core", "TodoListApp.Core\CRM.Core.csproj", "{B37103B0-BAD9-4CF1-B81D-47CC4F2ECE8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoListApp.Storage", "TodoListApp.Storage\TodoListApp.Storage.csproj", "{2D2A3C89-EEEB-4759-A2BE-D707526B4F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.Storage", "TodoListApp.Storage\CRM.Storage.csproj", "{2D2A3C89-EEEB-4759-A2BE-D707526B4F1E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoListApp.Api", "TodoListApp.Api\TodoListApp.Api.csproj", "{C3518AA3-253E-4B13-BD7F-4C63C127DB89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.Api", "TodoListApp.Api\CRM.Api.csproj", "{C3518AA3-253E-4B13-BD7F-4C63C127DB89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

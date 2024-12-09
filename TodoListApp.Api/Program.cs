@@ -16,6 +16,11 @@ builder.Services.AddAuthorization(options =>
 		policy.RequireClaim("Permission", "ModifyAccount");
 	});
 
+	options.AddPolicy("GetCurrentUserData", policy =>
+	{
+		policy.RequireClaim("Permission", "ModifyAccount");
+	});
+
 	options.AddPolicy("CreateNewAccountNotePermission", policy =>
 	{
 		policy.RequireClaim("Permission", "CreateNewAccountNote");

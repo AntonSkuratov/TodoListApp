@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TodoListApp.Core\TodoListApp.Core.csproj" />
-    <ProjectReference Include="..\TodoListApp.Storage\TodoListApp.Storage.csproj" />
+    <ProjectReference Include="..\TodoListApp.Core\CRM.Core.csproj" />
+    <ProjectReference Include="..\TodoListApp.Storage\CRM.Storage.csproj" />
   </ItemGroup>
 
 </Project>

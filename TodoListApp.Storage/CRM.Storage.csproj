@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TodoListApp.Core\TodoListApp.Core.csproj" />
+    <ProjectReference Include="..\TodoListApp.Core\CRM.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

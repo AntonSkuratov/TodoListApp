@@ -14,7 +14,7 @@ namespace TodoListApp.Api.Infrastructure
 	{
 		//Константы для:	
 		//времени жизни access-токена
-		public const int LIFE_TIME = 1;
+		public const int LIFE_TIME = 5;
 		//издателя токена
 		public const string ISSUER = "TodoListAppServer";
 		//потребителя токена

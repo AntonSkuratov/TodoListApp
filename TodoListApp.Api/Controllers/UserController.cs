@@ -69,12 +69,21 @@ namespace TodoListApp.Api.Controllers
 
 		//Эндпоинт для получения текущего пользователя
 		//Id текущего пользователя берётся из токена
-		[Authorize(Policy = "GetPermission")]
+		[Authorize(Policy = "GetCurrentUserData")]
 		[HttpGet]
 		[Route("/User/Get")]
 		public IActionResult GetUser()
 		{
 			return Ok(new UserRepository().GetUser(Convert.ToInt32(User.FindFirst("Id")!.Value)));
+		}
+
+		//Эндпоинт пользователя по id		
+		[Authorize(Policy = "GetPermission")]
+		[HttpGet]
+		[Route("/User/GetId")]
+		public IActionResult GetUserById(int id)
+		{
+			return Ok(new UserRepository().GetUser(id));
 		}
 
 		//Эндпоинт для добавления пользователя в роль
